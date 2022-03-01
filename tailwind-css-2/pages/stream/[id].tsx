@@ -4,7 +4,7 @@ const StreamDetail: NextPage = () => {
     return (
         <div className="py-10 space-y-4 px-4">
             <div className="w-full bg-slate-300 aspect-video rounded-md shadow-sm" />
-            <h3 className="text-gray-800 text-2xl mt-2 font-semibold">Let's Try Potatos!</h3>
+            <h3 className="text-gray-800 text-2xl mt-2 font-semibold">Galaxy S50</h3>
             <div className="py-10 px-4 pb-16 h-[50vh] overflow-y-scroll space-y-4">
                 <div className="flex items-start space-x-2">
                     <div className="w-8 h-8 rounded-full bg-slate-400" />

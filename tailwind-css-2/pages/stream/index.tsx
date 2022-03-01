@@ -2,11 +2,11 @@ import type { NextPage } from "next";
 
 const Stream: NextPage = () => {
     return (
-        <div className="py-10 space-y-4 divide-y-2 ">
+        <div className="py-10 space-y-4 divide-y-[1px] ">
             {[1, 2, 3, 4, 5].map((_, i) => 
             <div key={i} className="pt-4 px-4">
                 <div className="w-full bg-slate-300 aspect-video rounded-md shadow-sm" />
-                <h3 className="text-gray-700 text-lg mt-2">Let's Try Potatos!</h3>
+                <h1 className="text-2xl mt-2 font-bold text-gray-900">Galaxy S50</h1>
             </div>
             )}
             <button className='fixed bottom-24 right-5 bg-orange-400 rounded-full p-4 text-white shadow-xl hover:bg-orange-500 cursor-pointer transition-colors border-transparent'>
