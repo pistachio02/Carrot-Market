@@ -24,13 +24,13 @@ const Enter: NextPage = () => {
     reset();
     setMethod("phone");
   };
-  const onValid = (validForm: EnterForm) => {
-    if(loading) return;
-    enter(validForm);
+  const onValid = (data: EnterForm) => {
+    if (loading) return;
+    enter(data);
   };
 
   // console.log(watch());
-  // console.log(loading, data, error)
+  console.log(loading, data, error)
 
   return (
     <div className="mt-16 px-4">
