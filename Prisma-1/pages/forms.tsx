@@ -8,7 +8,7 @@ interface LoginForm {
 
 export default function Forms() {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>({
+    const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm<LoginForm>({
         mode: "onChange"
     }); // 이곳에서 mode를 설정해주는 이유는 만약 입력값을 입력하고 제출버튼을 누를때 조건이 맞는지 아닌지 알려주는게 아닌, 입력하는 즉시 안내를 하거나 혹은 그 외 기타 어떠한 동작을 했을때 안내를 주고 싶으면 mode를 이곳에서 설정해주는것이다.
     // 기본은 onSubmit으로 되어있어서 따로 설정하지 않으면 onSubmit으로 설정되는데 그렇게 되면 제출 버튼을 누를때 조건이 맞는지 여부를 안내하게 되어있고 만약 onChange로 mode를 바꿔주면 입력하는 즉시 바로 안내를 해주게 된다.
@@ -21,7 +21,8 @@ export default function Forms() {
         console.log("I am Not Valid!", errors)
     }
 
-    // console.log(errors)
+    // console.log(watch("email"))
+    // setValue("username", "its me!!!!") 이렇게 해주면 유저네임 입력창에 값이 자동으로 "its me!!!!"가 된다. 이렇게 해주는게 바로 입력값들을 우리가 컨트롤 할 수 있게 해주는것이다.
 
     return (
         <form onSubmit={handleSubmit(onValid, onInvalid)}>
