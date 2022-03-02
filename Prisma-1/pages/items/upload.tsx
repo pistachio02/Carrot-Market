@@ -1,10 +1,25 @@
 import type { NextPage } from "next";
-import Button from "../../components/button";
-import Input from "../../components/input";
-import Layout from "../../components/layout";
-import TextArea from "../../components/textarea";
+import Button from "@components/button";
+import Input from "@components/input";
+import Layout from "@components/layout";
+import TextArea from "@components/textarea";
+import { useForm } from "react-hook-form";
+import useMutation from "@libs/client/useMutation";
+
+interface UploadProductForm {
+  name: string;
+  price: number;
+  description: string;
+  photo: FileList;
+}
+
+interface UploadProductMutation {
+  ok: boolean;
+  // product: Product;
+}
 
 const Upload: NextPage = () => {
+  const { register, handleSubmit, watch } = useForm<UploadProductForm>();
   return (
     <Layout canGoBack title="Upload Product">
       <form className="p-4 space-y-4">
@@ -27,8 +42,14 @@ const Upload: NextPage = () => {
             <input className="hidden" type="file" />
           </label>
         </div>
-        <Input required label="Name" name="name" type="text" />
         <Input
+          register={register("name", { required: true })}
+          required
+          label="Name"
+          name="name"
+          type="text" />
+        <Input
+          register={register("price", { required: true })}
           required
           label="Price"
           placeholder="0.00"
@@ -36,7 +57,10 @@ const Upload: NextPage = () => {
           type="text"
           kind="price"
         />
-        <TextArea name="description" label="Description" />
+        <TextArea
+          register={register("description", { required: true })}
+          name="description"
+          label="Description" />
         <Button text="Upload item" />
       </form>
     </Layout>
