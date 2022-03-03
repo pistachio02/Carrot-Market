@@ -1,7 +1,11 @@
+import mail from "@sendgrid/mail";
+import twilio from "twilio";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "@libs/server/client";
 
+mail.setApiKey(process.env.SGAPI);
+const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 async function handler(
     req: NextApiRequest,
@@ -43,53 +47,26 @@ async function handler(
         }
     })
 
-    // console.log(token)
-
-    /* console.log(user) */
-
-    /* if(email) {
-        user = await client.user.findUnique({
-            where: {
-                email,
-            }
+    if (phone) {
+        const message = await twilioClient.messages.create({
+            messagingServiceSid: process.env.TWILIO_MSID,
+            to: process.env.MYPHONE!, // 원래는 이 자리에 실제 유저가 입력하는 번호가 들어가야 하나 트라이얼모드의 트윌리오를 사용하고 있기 때문에 우선은 내 번호로만 한다. 만약 실제 유저가 입력하는 번호를 사용하려면 여기에 그 번호를 넣으면 되는데 국가번호로 잊지 말고 넣어줘야 한다.
+            body: `Your LogIn Token Is ${payload}`,
+        });
+        // console.log(message)
+    } else if(email) {
+        const email = await mail.send({
+            from: "blackpanther@wondermove.net",
+            to: "blackpanther@wondermove.net",
+            subject: "Your Carrot Market Verification Email",
+            text: `Your LogIn Token Is ${payload}`,
+            html: `<strong>Your LogIn Token Is ${payload}</strong>`,
         })
-        if(user) console.log("Founded")
-        if(!user) {
-            console.log("Did not find. Will create.")
-            user = await client.user.create({
-                data: {
-                    name: "Anonymous",
-                    email,
-                }
-            })
-        }
-        console.log(user);
+        console.log(email)
     }
-    if(phone) {
-        user = await client.user.findUnique({
-            where: {
-                phone: +phone,
-            }
-        })
-        if(user) console.log("Founded")
-        if(!user) {
-            console.log("Did not find. Will create.")
-            user = await client.user.create({
-                data: {
-                    name: "Anonymous",
-                    phone,
-                }
-            })
-        }
-        console.log(user);
-    }
-    */
 
-    // return res.status(200).end();
-    // return res.status(200).json({ data: token });
     return res.json({
         ok: true,
-
     })
 };
 
