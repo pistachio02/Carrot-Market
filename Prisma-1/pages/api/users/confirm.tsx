@@ -23,7 +23,7 @@ async function handler(
     };
 
     await req.session.save();
-    
+
     await client.token.deleteMany({
         where: {
             userId: foundToken.userId,
@@ -36,4 +36,10 @@ async function handler(
     })
 };
 
-export default withApiSession(withHandler("POST", handler));
+export default withApiSession(
+    withHandler({ 
+        method: "POST", 
+        handler, 
+        isPrivate: false, 
+    })
+);

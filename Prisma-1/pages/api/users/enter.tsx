@@ -4,7 +4,7 @@ import withHandler, { ResponseType } from "@libs/server/withHandler";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "@libs/server/client";
 
-mail.setApiKey(process.env.SGAPI);
+mail.setApiKey(process.env.SGAPI!);
 const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 async function handler(
@@ -13,7 +13,7 @@ async function handler(
 ) {
 
     const { phone, email } = req.body;
-    const user = phone ? { phone: +phone } : email ? { email } : null;
+    const user = phone ? { phone } : email ? { email } : null;
 
     if (!user) return res.status(400).json({ ok: false });
 
@@ -70,4 +70,8 @@ async function handler(
     })
 };
 
-export default withHandler("POST", handler);
+export default withHandler({
+    method: "POST",
+    handler,
+    isPrivate: false,
+});
