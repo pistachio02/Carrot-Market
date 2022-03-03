@@ -4,13 +4,12 @@ import client from "@libs/server/client";
 
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-    // console.log(req.body);
+
     const { phone, email } = req.body;
-    // let user;
+    const user = phone ? { phone: +phone } : { email }
+    const payload = Math.floor(100000 + Math.random() * 900000) + "";
 
-    const payload = phone ? { phone: +phone } : { email }
-
-    const user = await client.user.upsert({
+    /* const user = await client.user.upsert({
         where: {
             ...payload,
         },
@@ -19,7 +18,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             ...payload,
         },
         update: {}
+    }) */
+
+    const token = await client.token.create({
+        data: {
+            payload,
+            user: {
+                connectOrCreate: {
+                    where: {
+                        ...user,
+                    },
+                    create: {
+                        name: "Anonymous",
+                        ...user,
+                    },
+                },
+            },
+        }
     })
+
+    console.log(token)
 
     /* console.log(user) */
 
@@ -60,9 +78,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         console.log(user);
     }
     */
-    
+
     // return res.status(200).end();
-    return res.status(200).json({data: user});
+    return res.status(200).json({ data: token });
 };
 
 export default withHandler("POST", handler);
