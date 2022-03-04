@@ -7,7 +7,7 @@ async function handler(
     req: NextApiRequest,
     res: NextApiResponse<ResponseType>
 ) {
-    const { id } = req.query;
+    const { query: { id }, session: { user } } = req;
     const product = await client.product.findUnique({
         where: {
             id: +id.toString(),
@@ -41,10 +41,23 @@ async function handler(
     });
     // console.log(relatedProducts)
 
+    const isLiked = Boolean(
+        await client.fav.findFirst({
+            where: {
+                productId: product?.id,
+                userId: user?.id
+            },
+            select: {
+                id: true,
+            },
+        })
+    );
+
     res.json({
         ok: true,
         product,
         relatedProducts,
+        isLiked,
     });
 };
 
