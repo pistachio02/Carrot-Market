@@ -4,7 +4,7 @@ const Profile: NextPage = () => {
     return (
         <div>
             <h1>
-                Hello!
+                This page shows the profile of an user!
             </h1>
         </div>
     )
