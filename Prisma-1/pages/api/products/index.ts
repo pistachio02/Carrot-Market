@@ -28,7 +28,7 @@ async function handler(
         // 위 두줄을 아래와 같이 한번에 작성할 수 있다.
 
         const {
-            body: { name, price, description },
+            body: { name, price, description, photoId },
             session: { user }
         } = req;
         const product = await client.product.create({
@@ -36,7 +36,7 @@ async function handler(
                 name,
                 price: +price,
                 description,
-                image: "imageUrl",
+                image: photoId,
                 user: {
                     connect: {
                         id: user?.id,
