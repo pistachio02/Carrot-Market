@@ -40,14 +40,26 @@ const EditProfile: NextPage = () => {
 
   const [editProfile, { data, loading }] = useMutation<EditProfileResponse>(`/api/users/me`);
 
-  const onValid = ({ email, phone, name, avatar }: EditProfileForm) => {
+  const onValid = async ({ email, phone, name, avatar }: EditProfileForm) => {
     if (loading) return;
     if (email === "" && phone === "" && name === "") {
       return setError("formErrors", {
         message: "E-mail or Phone number are required. You need to choose one.",
       });
     }
-    editProfile({ email, phone, name });
+    if (avatar && avatar.length > 0 && user) {
+      const { id, uploadURL } = await (await fetch(`/api/files`)).json();
+      const form = new FormData();
+      form.append("file", avatar[0], user?.id + "");
+      await fetch(uploadURL, {
+        method: "POST",
+        body: form,
+      });
+      return;
+      editProfile({ email, phone, name, });
+    } else {
+      editProfile({ email, phone, name });
+    };
   };
 
   useEffect(() => {
@@ -79,7 +91,7 @@ const EditProfile: NextPage = () => {
           <label
             htmlFor="picture"
             className="cursor-pointer py-2 px-3 border hover:bg-gray-50 border-gray-300 rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 text-gray-700"
-          > 
+          >
             Change
             <input
               {...register("avatar")}
