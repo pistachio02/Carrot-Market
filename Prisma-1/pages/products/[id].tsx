@@ -68,6 +68,8 @@ const ItemDetail: NextPage = () => {
 
               <Button large text="Talk to seller" />
 
+              {/* 위 버튼을 누르면 판매자와 채팅할 수 있도록 구현을 해봐야 한다. 그 전에 우선 onClick을 버튼 컴포넌트로 넘겨줘서 아무거나 콘솔에 좀 찍어보려고 하는데 벌써 쉽지 않다. 조금 더 공부해봐야할 것 같다. */}
+
               <button
                 onClick={onFavClick}
                 className={cls("p-3 rounded-md flex items-center hover:bg-gray-100 justify-center",
