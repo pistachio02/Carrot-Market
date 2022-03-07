@@ -25,7 +25,7 @@ const ItemDetail: NextPage = () => {
   const { data, mutate } = useSWR<ItemDetailResponse>(router.query.id ? `/api/products/${router.query.id}` : null)
   const [toggleFav] = useMutation(`/api/products/${router.query.id}/fav`);
   const onFavClick = () => {
-    if(!data) return;
+    if (!data) return;
     mutate({ ...data, isLiked: !data.isLiked }, false);
     toggleFav({});
   }
@@ -34,9 +34,14 @@ const ItemDetail: NextPage = () => {
     <Layout canGoBack>
       <div className="px-4  py-4">
         <div className="mb-8">
-          <div className="h-96 bg-slate-300" />
+          <img 
+            src={`https://imagedelivery.net/GyaT_KXVm8ENK5O549pkYA/${data?.product.image}/public`} 
+          />
           <div className="flex cursor-pointer py-3 border-t border-b items-center space-x-3">
-            <div className="w-12 h-12 rounded-full bg-slate-300" />
+            <img
+              src={`https://imagedelivery.net/GyaT_KXVm8ENK5O549pkYA/${data?.product?.user?.avatar}/avatar`}
+              className="w-12 h-12 rounded-full bg-slate-300"
+            />
             <div>
               <p className="text-sm font-medium text-gray-700">
                 {data?.product?.user?.name}
