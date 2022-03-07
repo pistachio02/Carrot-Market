@@ -65,7 +65,9 @@ const ItemDetail: NextPage = () => {
             <span className="text-2xl block mt-3 text-gray-900">₩ {data?.product?.price}</span>
             <p className=" my-6 text-gray-700">{data?.product?.description}</p>
             <div className="flex items-center justify-between space-x-2">
+
               <Button large text="Talk to seller" />
+
               <button
                 onClick={onFavClick}
                 className={cls("p-3 rounded-md flex items-center hover:bg-gray-100 justify-center",
