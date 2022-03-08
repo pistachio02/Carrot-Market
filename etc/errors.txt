@@ -1,0 +1,15 @@
+~~~~~~~~~~~~
+
+    만났던 문제?
+    db에 있는 phone이라는 항목의 타입을 BigInt로 해놨었다.
+    폰번호가 길수도 있으니까.
+    그런데 그렇게 하고 나서 db에 있는 폰번호 정보를 가져다가 응답으로 res.json({폰번호}) 를 해주려고 했더니 아래와 같은 에러가 났다.
+
+    typeerror: do not know how to serialize a bigint at json.stringify (<anonymous>)
+
+    구글 검색해보니 json()을 할 수 있는 타입들이 7개 정도 있는데 그 중 BigInt는 없어서 타입이 BigInt로 되어있는 정보는 res.json()을 할 수 없다는 문제였다.
+
+    그래서 그냥 타입을 다시 int로 바꿨다. 이렇게 하니 res.json({폰번호})는 잘 됬지만, 아마 이게 올바른 해결책은 아닌것같다.
+    나중에 더 공부해봐야지.
+
+~~~~~~~~~~~~
