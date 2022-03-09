@@ -38,6 +38,14 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
     toggleFav({});
   }
 
+  if (router.isFallback) {
+    return (
+      <Layout title="Loading for you!">
+        <span>I love you</span>
+      </Layout>
+    );
+  }
+
   return (
     <Layout canGoBack>
       <div className="px-4  py-4">
@@ -138,7 +146,7 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: true,
   };
 };
 
