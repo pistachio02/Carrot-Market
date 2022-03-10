@@ -41,7 +41,7 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
   if (router.isFallback) {
     return (
       <Layout title="Loading for you!">
-        <span>I love you</span>
+        <span>Please Wait For A While.</span>
       </Layout>
     );
   }
@@ -130,7 +130,13 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
             {relatedProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`}>
                 <a>
-                  <div className="h-56 w-full mb-4 bg-slate-300" />
+                  <div className="w-20 h-20 relative rounded-md">
+                    <Image
+                      src={`https://imagedelivery.net/GyaT_KXVm8ENK5O549pkYA/${product.image}/avatar`}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
                   <h3 className="text-gray-700 -mb-1">{product.name}</h3>
                   <span className="text-sm font-medium text-gray-900">${product.price}</span>
                 </a>
