@@ -65,3 +65,12 @@
     ch22. 배포 / 
 
 ~~~~~~~~~~~~
+
+    db schema에 변경이 있을때 적용법
+        ㄴ npx prisma db push
+    db에 연결하는 방법
+        ㄴ pscale connect carrot-market dev
+    prisma studio 여는 방법
+        ㄴ npx prisma studio
+
+~~~~~~~~~~~~
