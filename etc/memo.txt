@@ -73,4 +73,10 @@
     prisma studio 여는 방법
         ㄴ npx prisma studio
 
+    git 유저네임 & 유저이메일 확인법
+        ㄴ git config --list
+    git 유저네임 & 유저이메일 등록법
+        ㄴ git config user.name "pistachio02"
+        ㄴ git config user.email wiaptm0219@gmail.com
+
 ~~~~~~~~~~~~
