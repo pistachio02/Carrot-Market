@@ -41,6 +41,7 @@ model Token {
   userId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@index([userId])
 }
 
 model Product {
@@ -56,6 +57,8 @@ model Product {
   fav Fav[]
   sales Sale[]
   purchases Purchase[]
+
+  @@index([userId])
 }
 
 model Fav {
@@ -66,6 +69,7 @@ model Fav {
   productId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@index([userId, productId])
 }
 
 model Post {
@@ -79,6 +83,7 @@ model Post {
   longitude Float?
   answers Answer[]
   wonderings Wondering[]
+  @@index([userId])
 }
 
 model Answer {
@@ -90,6 +95,7 @@ model Answer {
   answer String @db.MediumText
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@index([userId, postId])
 }
 
 model Wondering {
@@ -100,6 +106,7 @@ model Wondering {
   postId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@index([userId, postId])
 }
 
 model Review {
@@ -112,6 +119,7 @@ model Review {
   createdFor User @relation(name: "receivedReviews", fields: [createdForId], references: [id], onDelete: Cascade)
   createdForId Int
   score Int @default(1)
+  @@index([createdById, createdForId])
 }
 
 model Sale {
@@ -122,6 +130,7 @@ model Sale {
   productId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@index([userId, productId])
 }
 
 model Purchase {
@@ -132,6 +141,7 @@ model Purchase {
   productId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@index([userId, productId])
 }
 
 model Stream {
@@ -147,6 +157,7 @@ model Stream {
   cloudflareId  String
   cloudflareUrl String
   cloudflareKey String
+  @@index([userId])
 }
 
 model Message {
@@ -158,6 +169,7 @@ model Message {
   streamId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@index([userId, streamId])
 }
 
 // Fav, Purchase, Sale 모델들을 보면 다 똑같다. 이름만 다를뿐 그 안에 구성이나 구조는 같게 되어있다. 그렇다면 이렇게 같은 구조를 가지지만 이름만 다른 모델을 하나로 만들 순 없을까? 방법은 아래와 같다.
@@ -173,6 +185,7 @@ model Message {
 //   createdAt DateTime @default(now())
 //   updatedAt DateTime @updatedAt
 //   kind Kind
+//   @@index([userId, productId])
 // }
 
 // enum Kind {
