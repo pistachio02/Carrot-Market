@@ -103,21 +103,21 @@
 
 ~~~~~~~~~~~~
 
-    tailwindcss: utility-first CSS 프레임워크이다 / m-1, flex와 같이 미리 세팅된 유틸리티 클래스를 활용하는 방식으로 HTML 코드 내에서 스타일링을 할 수 있다,
+    tailwindcss: utility-first CSS 프레임워크이다 / m-1, flex와 같이 미리 세팅된 유틸리티 클래스를 활용하는 방식으로 HTML 코드 내에서 스타일링을 할 수 있다.
 
-    Prisma: "Prisma is an open-source database toolkit. It replaces traditional ORMs and makes database access easy with an auto-generated query builder for TypeScript & Node.js." / Js,Ts에서 사용하는 ORM이다,
+    Prisma: "Prisma is an open-source database toolkit. It replaces traditional ORMs and makes database access easy with an auto-generated query builder for TypeScript & Node.js." / Js,Ts에서 사용하는 ORM이다.
 
-    planetscale: 마이SQL(MySQL)의 수평 확장을 위한 데이터베이스 클러스터링 시스템인 비테스(Vitess) 기반의 마이SQL 호환 서버리스 데이터베이스 플랫폼,
+    planetscale: 마이SQL(MySQL)의 수평 확장을 위한 데이터베이스 클러스터링 시스템인 비테스(Vitess) 기반의 마이SQL 호환 서버리스 데이터베이스 플랫폼.
 
-    twilio: 유저 인증 시 문자나 전화를 해야 할 경우 사용하는것,
+    twilio: 유저 인증 시 문자나 전화를 해야 할 경우 사용하는것.
 
-    sendgrid: 위와 마찬가지로 유저 인증 시 이메일을 전송해야 하는 겨우 사용하는것,
+    sendgrid: 위와 마찬가지로 유저 인증 시 이메일을 전송해야 하는 겨우 사용하는것.
 
-    ironsession: Node.js stateless session utility using signed and encrypted cookies to store data.,
+    ironsession: Node.js stateless session utility using signed and encrypted cookies to store data.
 
-    swr: React-hooks library for Data fetching / 리액트 훅을 사용할 때 데이터를 가져오기 위한 라이브러리 / 요청 후 받아온 데이터를 캐시에서 가지고있기 때문에 원하는 데이터를 다시 요청해서 받아올 필요 없이 미리 가지고 있던 데이터를 활용해 유저에게 빠르게 제공한 후 기존 가지고있던 데이터가 업데이트가 필요한지 여부에 따라 다시 데이터를 받아온다.,
+    swr: React-hooks library for Data fetching / 리액트 훅을 사용할 때 데이터를 가져오기 위한 라이브러리 / 요청 후 받아온 데이터를 캐시에서 가지고있기 때문에 원하는 데이터를 다시 요청해서 받아올 필요 없이 미리 가지고 있던 데이터를 활용해 유저에게 빠르게 제공한 후 기존 가지고있던 데이터가 업데이트가 필요한지 여부에 따라 다시 데이터를 받아온다.
 
-    react-hook-form: React Hook Form is a library that helps you validate forms in React.,
+    react-hook-form: React Hook Form is a library that helps you validate forms in React.
 
 ~~~~~~~~~~~~
 
